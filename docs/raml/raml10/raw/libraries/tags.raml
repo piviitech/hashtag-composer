@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+usage: data types
+types:
+  Tag:
+    properties:
+      name: string
+      count: number
+  SearchResult:
+    properties:
+      tags: Tag[]
+  RelatedResult:
+    properties:
+      tags_large: Tag[]
+      tags_medium: Tag[]
+      tags_small: Tag[]

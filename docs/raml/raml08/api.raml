@@ -1,0 +1,57 @@
+#%RAML 0.8
+title: TagTool API
+baseUri: http://tags.pivii.com/api/{version}
+version: v1
+
+uses:
+  Tags: !include libraries/tags.raml
+
+/search:
+  get:
+    queryParameters:
+      q:
+        displayName: Query
+        type: string
+        description: part of the tag to be searched for
+        example: some
+        required: true
+    description: search for tags containing a substring
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "tags": [
+                  {
+                    "name": "something",
+                    "count: 5
+                  }
+                ]
+              }
+/related:
+  get:
+    queryParameters:
+      tag:
+        displayName: Tag
+        type: string
+        description: query tag
+        example: something
+        required: true
+    description: get suggestions based on a single tag
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                 "tags_large": [
+                    {"name": "something" "count": 5}
+                 ],
+                 "tags_medium": [
+                    {"name": "something" "count": 5}
+                 ],
+                 "tags_small": [
+                    {"name": "something" "count": 5}
+                 ]
+              }

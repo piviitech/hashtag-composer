@@ -1,0 +1,4 @@
+Tag:
+  properties:
+    name: string
+    count: number
