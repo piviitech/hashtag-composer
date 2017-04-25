@@ -1,0 +1,98 @@
+---
+# A specification for the REST API of the Tag Composer
+swagger: '2.0'
+host: tags.pivii.co
+basePath: /api/v1
+schemes:
+  - https
+produces:
+  - application/json
+info:
+  version: "1.0.0"
+  title: Tag Composer API
+
+definitions:
+  Tag:
+    type: object
+    properties:
+      name:
+        type: string
+      count:
+        type: integer
+  TagArray:
+    type: array
+    items:
+      $ref: '#/definitions/Tag'
+  SearchResult:
+    type: object
+    properties:
+      tags:
+        $ref: '#/definitions/TagArray'
+  RelatedResult:
+    type: object
+    properties:
+      tags_large:
+        $ref: '#/definitions/TagArray'
+      tags_medium:
+        $ref: '#/definitions/TagArray'
+      tags_small:
+        $ref: '#/definitions/TagArray'
+  
+paths:
+  /search:
+    get:
+      description: |
+        Gets fitting tags, which match a given substring query. Grouped in
+        categories.
+      parameters:
+        -
+          name: q
+          in: query
+          description: Query string
+          required: true
+          type: string
+      responses:
+        200:
+          description: Search result
+          schema:
+            $ref: '#/definitions/SearchResult'
+          examples:
+            application/json:
+              {
+                "tags": [
+                  {
+                    "name": "something",
+                    "count": 5 
+                  }
+                ]
+              }
+
+  /related:
+    get:
+      description: |
+        Gets tags related to a given existing tag. Grouped in categories.
+      parameters:
+        -
+          name: tag
+          in: query
+          description: Query tag string
+          required: true
+          type: string
+      responses:
+        200:
+          description: Query result
+          schema:
+            $ref: '#/definitions/RelatedResult'
+          examples:
+            application/json:
+              {
+                 "tags_large": [
+                    {"name": "something", "count": 5}
+                 ],
+                 "tags_medium": [
+                    {"name": "something", "count": 5}
+                 ],
+                 "tags_small": [
+                    {"name": "something", "count": 5}
+                 ]
+              }
