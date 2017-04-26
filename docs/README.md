@@ -1,5 +1,16 @@
 # API Specification Tools Notes
 
+## TL;DR
+Look into the swagger.yaml file. The REST API is defined there in
+human-consumable plaintext form.
+
+**Why?** Backend and frontend people can talk about the API and agree on the
+structure before starting coding. Frontend people don't have to dive
+into the server code to know what responses and requests should look like.
+Backend people know what'll be expected from the server.
+
+## Storytime
+
 Here the docs will be defined in either one or two
 different rest-api doc toools available, to be played with and compared.
 
