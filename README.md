@@ -5,6 +5,9 @@ A webtool written in vue.js to help choose good, relevant hashtags for Instagram
 
 For more details, see the readme documents in each respective folder.
 
+### docs
+The specification of the REST API in [swagger](http://swagger.io). Look at the swagger.yaml file.
+
 ### frontend
 The vue.js project - what a user sees in her browser.
 
