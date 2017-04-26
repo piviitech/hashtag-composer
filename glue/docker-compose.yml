@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  nginx:
+    build: ./nginx
+    command: bash -c "nginx -g 'daemon off;'"
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:5000:5000"
+    # docker for mac seems to make trouble here
+    #network_mode: "host"
+    #network_mode: "bridge"
