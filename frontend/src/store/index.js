@@ -13,6 +13,8 @@ const mutations = {
   }
 }
 
+// see https://github.com/vuejs/vuex/tree/dev/examples/todomvc/store
+
 export default new Vuex.Store({
 // const store = new Vuex.Store({
   state,
