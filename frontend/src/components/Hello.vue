@@ -23,9 +23,16 @@
 <script>
 export default {
   name: 'hello',
+  /*
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App! Count: ' + store.state.count
+    }
+  },
+  */
+  computed: {
+    msg () {
+      return 'Welcome to Your Vue.js App! Count: ' + this.$store.state.count
     }
   }
 }
