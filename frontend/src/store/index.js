@@ -31,7 +31,23 @@ const mutations = {
   },
   updateCurrentTag (state, { newCurrentTag }) {
     state.currentTagText = newCurrentTag
-    // TODO: kick off autocomplete?
+
+    console.log('debouncing')
+    get('/api/v1/search')
+      .then(function (response) {
+        console.log(response.data)
+        state.autosuggestItems = response.data.tags
+      })
+    // debounce(
+    //   function () {
+    //     get('/api/v1/search')
+    //       .then(function (response) {
+    //         console.log(response.data)
+    //         state.autosuggestItems = response.data.tags
+    //       })
+    //   },
+    //   500
+    // )
   },
   addSuggestedTag (state, { tagText }) { // for clicking around on related Tags
     if (!includes(state.tagList, tagText)) {

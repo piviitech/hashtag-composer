@@ -1,8 +1,8 @@
 <template>
   <span v-if="notEmpty">
   <span>Tag autocomplete:</span>
-  <ul>
-    <li><tag></tag></li>
+  <ul v-for="tag in items">
+    <li>{{tag.name}} ({{tag.count}})</li>
   </ul>
   </span>
 </template>
@@ -15,6 +15,9 @@ export default {
   computed: {
     notEmpty () {
       return this.$store.state.autosuggestItems.length !== 0
+    },
+    items () {
+      return this.$store.state.autosuggestItems
     }
   },
   components: {
