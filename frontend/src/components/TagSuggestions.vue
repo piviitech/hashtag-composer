@@ -5,7 +5,7 @@
   <div v-for="category in suggestionCategories">
   {{ category.title }}
   <ul v-for="tag in category.items">
-    <li>{{tag.name}} ({{tag.count}})</li>
+    <tag :name="tag.name" :count="tag.count" />
   </ul>
   </div>
 

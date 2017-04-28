@@ -2,7 +2,7 @@
   <span v-if="notEmpty">
   <span>Tag autocomplete:</span>
   <ul v-for="tag in items">
-    <li>{{tag.name}} ({{tag.count}})</li>
+    <tag :name="tag.name" :count="tag.count" />
   </ul>
   </span>
 </template>

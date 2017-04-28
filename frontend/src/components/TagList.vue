@@ -2,7 +2,9 @@
   <span v-if="notEmpty">
   <span>Your tags:</span>
   <ul>
-    <li v-for="tag in tagList">{{tag}}</li>
+    <li v-for="tag in tagList">
+      <tag :name="tag.name" :count="tag.count" :removable="true"/>
+    </li>
   </ul>
   </span>
 </template>
