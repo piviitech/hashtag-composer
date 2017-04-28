@@ -20,10 +20,17 @@ const mutations = {
     state.mostRecentTag = tagText
 
     if (tagText !== '') {
-      // if (includes(state.tagList, tagText)) {
-      state.tagList.push({name: tagText, count: -1})
+      var found = -1
+      for (var i in state.tagList) {
+        if (state.tagList[i].name === tagText) {
+          found = i
+        }
+      }
+      if (found === -1) {
+        state.tagList.push({name: tagText, count: -1})
+      }
 
-      get('/api/v1/related')
+      get('/api/v1/related?q=' + tagText)
         .then(function (response) {
           state.relatedItemCategories = response.data
         })
@@ -34,7 +41,7 @@ const mutations = {
   updateCurrentTag (state, { newCurrentTag }) {
     state.currentTagText = newCurrentTag
 
-    get('/api/v1/search')
+    get('/api/v1/search?q=' + newCurrentTag)
       .then(function (response) {
         state.autosuggestItems = response.data.tags
       })
@@ -52,8 +59,15 @@ const mutations = {
     // )
   },
   addSuggestedTag (state, { tagText }) { // for clicking around on related Tags
-    // if (!includes(state.tagList, tagText)) {
-    state.tagList.push({name: tagText, count: -1})
+    var found = -1
+    for (var i in state.tagList) {
+      if (state.tagList[i].name === tagText) {
+        found = i
+      }
+    }
+    if (found === -1) {
+      state.tagList.push({name: tagText, count: -1})
+    }
   },
   removeTag (state, { tagText }) {
     var found = -1
