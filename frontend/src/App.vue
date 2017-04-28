@@ -18,4 +18,5 @@ $primary-color: #333;
   font-family: $font-stack
   margin-top: 20px
   margin-left: 20px
+  margin-right: 20px
 </style>

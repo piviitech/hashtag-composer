@@ -1,19 +1,32 @@
 <template>
-  <span>
-    <div>Tag input.</div>
-    <tag-autocomplete></tag-autocomplete>
-  </span>
+  <input @keyup.enter="commit" v-model="currentTag" type="text" placeholder="Start by typing your first tag here!">
 </template>
 
 <script>
-import TagAutocomplete from './TagAutocomplete'
-
 export default {
   name: 'tag-input',
-  components: {
-    'tag-autocomplete': TagAutocomplete
+  data () {
+    return {
+      currentTag: ''
+    }
   },
-  computed: {
+  methods: {
+    commit (event) {
+      this.$store.commit('commitTag', {tagText: this.currentTag})
+      this.currentTag = ''
+    }
+  },
+  watch: {
+    currentTag: function (newCurrentTag) {
+      this.$store.commit('updateCurrentTag', {newCurrentTag})
+    }
   }
 }
 </script>
+
+<style lang="sass" scoped>
+input
+  display: block
+  width: 100%
+  font-size: 1.5em
+</style>

@@ -1,10 +1,10 @@
 <template>
-  <button>Copy tags!</button>
+  <span>item (21M)</span>
 </template>
 
 <script>
 export default {
-  name: 'tag-copy-button',
+  name: 'tag',
   computed: {
   }
 }

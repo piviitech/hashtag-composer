@@ -1,13 +1,13 @@
 <template>
-  <span>Tag count: {{ tag_count }}</span>
+  <span>Tag count: {{ tagCount }}</span>
 </template>
 
 <script>
 export default {
   name: 'tag-count',
   computed: {
-    tag_count () {
-      return 42
+    tagCount () {
+      return this.$store.state.tagList.length
     }
   }
 }
