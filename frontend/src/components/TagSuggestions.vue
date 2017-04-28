@@ -1,12 +1,13 @@
 <template>
-  <span v-if="recentTag">
+  <span v-if="notEmpty">
   <span>Tag suggestions for #{{recentTag}}</span>
 
-  <span>
-  <ul>
-    <li><tag></tag></li>
+  <div v-for="category in suggestionCategories">
+  {{ category.title }}
+  <ul v-for="tag in category.items">
+    <li>{{tag.name}} ({{tag.count}})</li>
   </ul>
-  </span>
+  </div>
 
   </span>
 </template>
@@ -19,6 +20,27 @@ export default {
   computed: {
     recentTag () {
       return this.$store.state.mostRecentTag
+    },
+    notEmpty () {
+      return Object.keys(this.$store.state.relatedItemCategories).length !== 0
+    },
+    suggestionCategories () {
+      var a = this.$store.state.relatedItemCategories
+      var res = []
+
+      res.push({
+        title: 'Small',
+        items: a.tags_small
+      })
+      res.push({
+        title: 'Medium',
+        items: a.tags_medium
+      })
+      res.push({
+        title: 'Large',
+        items: a.tags_large
+      })
+      return res
     }
   },
   components: {

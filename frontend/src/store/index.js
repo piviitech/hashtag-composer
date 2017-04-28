@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+// import {includes, debounce} from 'lodash'
 import includes from 'lodash'
+import get from 'axios'
 
 Vue.use(Vuex)
 
@@ -21,6 +23,11 @@ const mutations = {
     if (includes(state.tagList, tagText)) {
       state.tagList.push(tagText)
     }
+
+    get('/api/v1/related')
+      .then(function (response) {
+        state.relatedItemCategories = response.data
+      })
   },
   updateCurrentTag (state, { newCurrentTag }) {
     state.currentTagText = newCurrentTag
