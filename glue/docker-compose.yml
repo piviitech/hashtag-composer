@@ -6,8 +6,7 @@ services:
     command: bash -c "nginx -g 'daemon off;'"
     ports:
       - "127.0.0.1:9000:9000"
-      - "127.0.0.1:8080:8080"
-      - "127.0.0.1:5000:5000"
-    # docker for mac seems to make trouble here
-    #network_mode: "host"
-    #network_mode: "bridge"
+    #  - "127.0.0.1:8080:8080"
+    #  - "127.0.0.1:5000:5000"
+    # run the container on the host network stack, so it has access to all localhost-based services (8080, 5000 in particular)
+    network_mode: "host"
