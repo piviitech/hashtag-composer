@@ -29,7 +29,7 @@ Follow the setup instructions in each folder.
 Start the frontend and backend development servers on ports :8080 and :5000
 respectively. 
 
-GOOD: Navigate to localhost:8080. The frontend project will proxy to the backend dev server. 
+GOOD: Navigate to localhost:8080. The frontend project will proxy to the backend dev server.  
 BAD: Run the glue project. Navigate to localhost:9000
 
 Start developing.
