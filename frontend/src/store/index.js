@@ -38,6 +38,8 @@ const mutations = {
         console.log(response.data)
         state.autosuggestItems = response.data.tags
       })
+    // see end of https://vuex.vuejs.org/en/actions.html
+    //
     // debounce(
     //   function () {
     //     get('/api/v1/search')
