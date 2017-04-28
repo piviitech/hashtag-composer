@@ -17,9 +17,10 @@ const state = {
 const mutations = {
   commitTag (state, { tagText }) { // from the input field - free form
     state.currentTagText = ''
-    state.mostRecentTag = tagText
 
     if (tagText !== '') {
+      state.mostRecentTag = tagText
+
       var found = -1
       for (var i in state.tagList) {
         if (state.tagList[i].name === tagText) {
