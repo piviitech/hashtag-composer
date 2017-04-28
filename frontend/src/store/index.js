@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import {includes, debounce} from 'lodash'
-// import includes from 'lodash'
+// import debounce from 'lodash'
 import get from 'axios'
 
 Vue.use(Vuex)
@@ -20,13 +19,17 @@ const mutations = {
     state.currentTagText = ''
     state.mostRecentTag = tagText
 
-    // if (includes(state.tagList, tagText)) {
-    state.tagList.push({name: tagText, count: -1})
+    if (tagText !== '') {
+      // if (includes(state.tagList, tagText)) {
+      state.tagList.push({name: tagText, count: -1})
 
-    get('/api/v1/related')
-      .then(function (response) {
-        state.relatedItemCategories = response.data
-      })
+      get('/api/v1/related')
+        .then(function (response) {
+          state.relatedItemCategories = response.data
+        })
+    }
+
+    state.autosuggestItems = []
   },
   updateCurrentTag (state, { newCurrentTag }) {
     state.currentTagText = newCurrentTag
@@ -52,8 +55,20 @@ const mutations = {
     // if (!includes(state.tagList, tagText)) {
     state.tagList.push({name: tagText, count: -1})
   },
-  selectTag (state, { text }) { // when clicking on tag list (suggestions)
-    state.mostRecentTag = text
+  removeTag (state, { tagText }) {
+    var found = -1
+    for (var i in state.tagList) {
+      if (state.tagList[i].name === tagText) {
+        found = i
+      }
+    }
+    if (found !== -1) {
+      state.tagList.splice(found, 1)
+    }
+    // TODO: update recent?
+  },
+  selectTag (state, { tagText }) { // when clicking on tag list (suggestions)
+    state.mostRecentTag = tagText
     // TODO
     // get('/api/v1/related')
     //   .then(function (response) {

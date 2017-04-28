@@ -36,9 +36,16 @@ export default {
   methods: {
     deleteTag () {
       // console.log('Trying to delete tag #' + this.name)
+      this.$store.commit('removeTag', {tagText: this.name})
     },
     selectTag () {
-      this.$store.commit('selectTag', {text: this.name})
+      if (this.removable) {
+        // already added tag, we only select it
+        this.$store.commit('selectTag', {tagText: this.name})
+      } else {
+        // tag not yet added. Add dat shit!
+        this.$store.commit('commitTag', {tagText: this.name})
+      }
     }
   }
 }

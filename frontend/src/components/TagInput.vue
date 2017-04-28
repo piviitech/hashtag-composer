@@ -5,20 +5,19 @@
 <script>
 export default {
   name: 'tag-input',
-  data () {
-    return {
-      currentTag: ''
+  computed: {
+    currentTag: {
+      get () {
+        return this.$store.state.currentTagText
+      },
+      set (newCurrentTag) {
+        this.$store.commit('updateCurrentTag', {newCurrentTag})
+      }
     }
   },
   methods: {
     commit (event) {
       this.$store.commit('commitTag', {tagText: this.currentTag})
-      this.currentTag = ''
-    }
-  },
-  watch: {
-    currentTag: function (newCurrentTag) {
-      this.$store.commit('updateCurrentTag', {newCurrentTag})
     }
   }
 }
