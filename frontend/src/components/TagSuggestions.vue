@@ -1,15 +1,16 @@
 <template>
-  <span v-if="notEmpty">
-  <span>Tag suggestions for #{{recentTag}}</span>
-
-  <div v-for="category in suggestionCategories">
-  {{ category.title }}
-  <ul v-for="tag in category.items">
-    <tag :name="tag.name" :count="tag.count" />
-  </ul>
+  <div v-if="notEmpty" class="container">
+    <span>Tag suggestions for #{{recentTag}}</span>
+    <div class="wrapper">
+      <div v-for="category in suggestionCategories" class="category">
+        {{ category.title }}
+        <ul v-for="tag in category.items">
+          <tag :name="tag.name" :count="tag.count" />
+        </ul>
+      </div>
+    </div>
+    <hr>
   </div>
-
-  </span>
 </template>
 
 <script>
@@ -48,3 +49,15 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+  .container
+    text-align: center
+
+  .wrapper
+    display: flex
+    justify-content: center
+
+    .category
+      margin: 1em
+</style>

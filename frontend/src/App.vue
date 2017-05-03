@@ -11,12 +11,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$font-stack: Helvetica, sans-serif;
-$primary-color: #333;
+  $font-stack: 'Raleway', sans-serif
+  $primary-color: #333
+  $light-pink: rgb(188, 72, 110)
+  $very-light-pink: #fce8ee
+  $pink: #b22d57
 
-#app
-  font-family: $font-stack
-  margin-top: 20px
-  margin-left: 20px
-  margin-right: 20px
+  body, html
+    padding: 0
+    margin: 0
+
+  #app
+    margin: 0
+    font-family: $font-stack
 </style>

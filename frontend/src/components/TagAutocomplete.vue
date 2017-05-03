@@ -1,10 +1,9 @@
 <template>
-  <span v-if="notEmpty">
-  <span>Tag autocomplete:</span>
-  <ul v-for="tag in items">
-    <tag :name="tag.name" :count="tag.count" />
-  </ul>
-  </span>
+  <div v-if="notEmpty" class="container">
+    <ul v-for="tag in items">
+      <tag :name="tag.name" :count="tag.count" />
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -27,9 +26,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-span
+.container
   display: block
-  width: 100%
-  font-size: 1.5em
-  margin: 0.5em
+  width: 50%
+  transform: translateX(50%)
+  font-size: 1em
 </style>

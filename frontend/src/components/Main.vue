@@ -1,41 +1,52 @@
 <template>
-  <div>
-    <h1>Hashtag Composer</h1>
-    <tag-input></tag-input>
-    <span class="right">
-      <tag-count></tag-count>
-      <tag-copy-button></tag-copy-button>
-    </span>
-    <tag-autocomplete></tag-autocomplete>
-    <div>
-      <div>
-        <tag-list></tag-list>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <a href="/">
+          <img src="static/logo.png" alt="">
+        </a>
       </div>
+      <h1>Hashtag Composer</h1>
     </div>
+    <tag-input></tag-input>
     <tag-suggestions></tag-suggestions>
+    <tag-list></tag-list>
   </div>
 </template>
 
 <script>
-import TagCount from './TagCount'
 import TagList from './TagList'
-import TagCopyButton from './TagCopyButton'
 import TagInput from './TagInput'
 import TagSuggestions from './TagSuggestions'
-import TagAutocomplete from './TagAutocomplete'
 
 export default {
   name: 'main',
   components: {
-    'tag-count': TagCount,
     'tag-list': TagList,
-    'tag-copy-button': TagCopyButton,
     'tag-input': TagInput,
-    'tag-suggestions': TagSuggestions,
-    TagAutocomplete
+    'tag-suggestions': TagSuggestions
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
+  $font-stack: Helvetica, sans-serif
+  $primary-color: #333
+  $very-light-pink: #fce8ee
+  $pink: #b22d57
+
+  .container
+    margin: 0
+    padding: 0
+
+  .header
+    height: 8em
+    padding: 1em
+    h1
+      text-align: center
+      color: $pink
+    .logo
+      height: 4em
+      img
+        height: 100%
 </style>

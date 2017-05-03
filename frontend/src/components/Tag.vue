@@ -1,12 +1,11 @@
 <template>
-  <span>
-    <span @click="selectTag">
-      {{name}}
-      ({{prettyCount}})
+  <div class="tagbox">
+    <span class="tag" @click="selectTag">#{{name}}</span>
+    <span class="count">({{prettyCount}})</span>
+    <span class="deletethis" v-if="removable" @click="deleteTag">
+      <i class="fa fa-times" aria-hidden="true"></i>
     </span>
-    <span v-if="removable"><a href="#" @click="deleteTag">DELETE THIS</a></span>
-  </span>
-
+  </div>
 </template>
 
 <script>
@@ -50,3 +49,32 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  $light-pink: rgb(188, 72, 110)
+  $pink: #b22d57
+
+  .tagbox
+    padding: 0.5em
+    background-color: $light-pink
+    border-radius: 1em
+    color: white
+    display: inline-block
+    margin: 0.1em
+    cursor: pointer
+    display: flex
+    align-items: center
+    &:hover
+      background-color: $pink
+
+  .tag
+
+  .count
+
+  .deletethis
+    font-size: 1em
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-left: 0.5em
+</style>
