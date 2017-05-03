@@ -1,9 +1,9 @@
 <template>
   <div v-if="notEmpty" class="container">
-    <span>Tag suggestions for #{{recentTag}}</span>
+    <div class="current">#{{recentTag}}</div>
     <div class="wrapper">
       <div v-for="category in suggestionCategories" class="category">
-        {{ category.title }}
+        <!-- {{ category.title }} -->
         <ul v-for="tag in category.items">
           <tag :name="tag.name" :count="tag.count" />
         </ul>
@@ -50,9 +50,17 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
+  $pink: #b22d57
+
   .container
     text-align: center
+    margin: 2em
+
+  .current
+    color: $pink
+    font-weight: 500
+    font-size: 2em
 
   .wrapper
     display: flex

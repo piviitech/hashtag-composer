@@ -1,9 +1,8 @@
 <template>
-  <div class="" v-if="notEmpty">
+  <div class="container" v-if="notEmpty">
     <div class="tagswrapper" >
       <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true"/>
     </div>
-    <tag-count></tag-count>
     <tag-copy-button></tag-copy-button>
   </div>
 </template>
@@ -32,6 +31,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .container
   .tagswrapper
     display: flex
     justify-content: center

@@ -36,12 +36,12 @@ export default {
   $pink: #b22d57
 
   .container
-    margin: 0
-    padding: 0
+    text-align: center
 
   .header
     height: 8em
     padding: 1em
+    margin: 1em
     h1
       text-align: center
       color: $pink

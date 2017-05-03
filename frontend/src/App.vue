@@ -17,10 +17,6 @@ export default {
   $very-light-pink: #fce8ee
   $pink: #b22d57
 
-  body, html
-    padding: 0
-    margin: 0
-
   #app
     margin: 0
     font-family: $font-stack

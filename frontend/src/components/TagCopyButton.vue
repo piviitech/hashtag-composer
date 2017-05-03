@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <button :disabled="notReady" @click="clicked" v-clipboard:copy="copyData">{{ message }}</button>
+  <div class="container">
+    <button :class="{ copied: isCopied }" :disabled="notReady" @click="clicked" v-clipboard:copy="copyData">{{ tagCount }}</button>
   </div>
 </template>
 
@@ -9,12 +9,18 @@ export default {
   name: 'tag-copy-button',
   data () {
     return {
-      message: `Copy tags!`
+      isCopied: false
     }
   },
   computed: {
     tagCount () {
-      return this.$store.state.tagList.length
+      if (this.isCopied) {
+        return `Copied!`
+      } else if (this.$store.state.tagList.length === 1) {
+        return `Copy ${this.$store.state.tagList.length} tag!`
+      } else {
+        return `Copy ${this.$store.state.tagList.length} tags!`
+      }
     },
     notReady () {
       return this.$store.state.tagList.length === 0
@@ -37,7 +43,7 @@ export default {
   },
   methods: {
     clicked (event) {
-      this.message = 'Copied!'
+      this.isCopied = true
     }
   }
 }
@@ -45,14 +51,26 @@ export default {
 
 <style lang="sass" scoped>
   $pink: #b22d57
+  $grey: rgb(173, 185, 172)
+
+  .container
+    margin: 1em
+    text-align: center
 
   button
     padding: 0
     border: none
     background: none
+    background-color: $grey
+    width: 8em
     padding: 0.5em
-    border: 1px solid $pink
-    border-radius: 1em
+    font-size: 1em
+    border-radius: 2em
     display: inline-block
     margin: 0.1em
+    color: white
+    &:hover
+      font-weight: 500
+  .copied
+    background-color: $pink
 </style>

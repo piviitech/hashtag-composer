@@ -26,6 +26,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
+
 .container
   display: block
   width: 50%

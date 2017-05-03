@@ -1,6 +1,8 @@
 <template>
-  <div class="searchbar">
-    <input @keyup.enter="commit" v-model="currentTag" type="text" name="search" placeholder="Start by typing your first tag here!">
+  <div class="container">
+    <div class="searchbar">
+      <input @keyup.enter="commit" v-model="currentTag" type="text" name="search" placeholder="Start by typing your first tag here!">
+    </div>
     <tag-autocomplete></tag-autocomplete>
   </div>
 </template>
@@ -33,10 +35,13 @@ export default {
 
 <style lang="sass" scoped>
   .searchbar
+    text-align: center
+    display: flex
+    justify-content: center
+
   input
     display: block
-    width: 50%
-    transform: translateX(50%)
+    width: 30%
     font-size: 1.5em
     appearance: none
     border: none

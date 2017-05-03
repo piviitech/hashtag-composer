@@ -1,5 +1,5 @@
 <template>
-  <span>Tag count: {{ tagCount }}</span>
+  <div class="container">Tag count: {{ tagCount }}</div>
 </template>
 
 <script>
@@ -12,3 +12,9 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  .container
+    margin: 1em
+    
+</style>
