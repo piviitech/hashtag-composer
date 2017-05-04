@@ -1,12 +1,11 @@
 <template>
-  <span>
-    <span @click="selectTag">
-      {{name}}
-      ({{prettyCount}})
+  <div class="tag-container">
+    <span class="tag" @click="selectTag">#{{name}}</span>
+    <span class="count">({{prettyCount}})</span>
+    <span class="deletethis" v-if="removable" @click="deleteTag">
+      <i class="fa fa-times" aria-hidden="true"></i>
     </span>
-    <span v-if="removable"><a href="#" @click="deleteTag">DELETE THIS</a></span>
-  </span>
-
+  </div>
 </template>
 
 <script>

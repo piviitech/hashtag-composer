@@ -1,5 +1,7 @@
 <template>
-  <button :disabled="notReady" @click="clicked" v-clipboard:copy="copyData">{{ message }}</button>
+  <div class="copy-container">
+    <button :class="{ copied: isCopied }" :disabled="notReady" @click="clicked" v-clipboard:copy="copyData">{{ tagCount }}</button>
+  </div>
 </template>
 
 <script>
@@ -7,10 +9,19 @@ export default {
   name: 'tag-copy-button',
   data () {
     return {
-      message: 'Copy tags!'
+      isCopied: false
     }
   },
   computed: {
+    tagCount () {
+      if (this.isCopied) {
+        return `Copied!`
+      } else if (this.$store.state.tagList.length === 1) {
+        return `Copy ${this.$store.state.tagList.length} tag!`
+      } else {
+        return `Copy ${this.$store.state.tagList.length} tags!`
+      }
+    },
     notReady () {
       return this.$store.state.tagList.length === 0
     },
@@ -32,7 +43,7 @@ export default {
   },
   methods: {
     clicked (event) {
-      this.message = 'Copied!'
+      this.isCopied = true
     }
   }
 }

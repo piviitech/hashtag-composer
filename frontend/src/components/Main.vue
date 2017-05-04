@@ -1,41 +1,30 @@
 <template>
-  <div>
-    <h1>Hashtag Composer</h1>
-    <tag-input></tag-input>
-    <span class="right">
-      <tag-count></tag-count>
-      <tag-copy-button></tag-copy-button>
-    </span>
-    <tag-autocomplete></tag-autocomplete>
-    <div>
-      <div>
-        <tag-list></tag-list>
+  <div class="main-container">
+    <div class="header">
+      <div class="logo">
+        <a href="/">
+          <img src="static/logo.png" alt="">
+        </a>
       </div>
+      <h1>Hashtag Composer</h1>
     </div>
+    <tag-input></tag-input>
     <tag-suggestions></tag-suggestions>
+    <tag-list></tag-list>
   </div>
 </template>
 
 <script>
-import TagCount from './TagCount'
 import TagList from './TagList'
-import TagCopyButton from './TagCopyButton'
 import TagInput from './TagInput'
 import TagSuggestions from './TagSuggestions'
-import TagAutocomplete from './TagAutocomplete'
 
 export default {
   name: 'main',
   components: {
-    'tag-count': TagCount,
     'tag-list': TagList,
-    'tag-copy-button': TagCopyButton,
     'tag-input': TagInput,
-    'tag-suggestions': TagSuggestions,
-    TagAutocomplete
+    'tag-suggestions': TagSuggestions
   }
 }
 </script>
-
-<style scoped>
-</style>
