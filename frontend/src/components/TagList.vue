@@ -1,6 +1,6 @@
 <template>
-  <div class="container" v-if="notEmpty">
-    <div class="tagswrapper" >
+  <div class="list-container" v-if="notEmpty">
+    <div class="tags-wrapper" >
       <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true"/>
     </div>
     <tag-copy-button></tag-copy-button>
@@ -10,7 +10,6 @@
 <script>
 import Tag from './Tag'
 import TagCopyButton from './TagCopyButton'
-import TagCount from './TagCount'
 
 export default {
   name: 'tag-list',
@@ -24,16 +23,7 @@ export default {
   },
   components: {
     'tag-copy-button': TagCopyButton,
-    'tag-count': TagCount,
     Tag
   }
 }
 </script>
-
-<style lang="sass" scoped>
-  .container
-  .tagswrapper
-    display: flex
-    justify-content: center
-    flex-wrap: wrap
-</style>

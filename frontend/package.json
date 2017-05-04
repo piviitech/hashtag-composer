@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "vue": "^2.2.6",
     "vue-clipboard2": "0.0.6",

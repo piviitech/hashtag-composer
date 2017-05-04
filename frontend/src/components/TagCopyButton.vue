@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="copy-container">
     <button :class="{ copied: isCopied }" :disabled="notReady" @click="clicked" v-clipboard:copy="copyData">{{ tagCount }}</button>
   </div>
 </template>
@@ -48,29 +48,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass" scoped>
-  $pink: #b22d57
-  $grey: rgb(173, 185, 172)
-
-  .container
-    margin: 1em
-    text-align: center
-
-  button
-    padding: 0
-    border: none
-    background: none
-    background-color: $grey
-    width: 8em
-    padding: 0.5em
-    font-size: 1em
-    border-radius: 2em
-    display: inline-block
-    margin: 0.1em
-    color: white
-    &:hover
-      font-weight: 500
-  .copied
-    background-color: $pink
-</style>

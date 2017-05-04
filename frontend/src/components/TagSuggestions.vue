@@ -65,6 +65,7 @@ export default {
   .wrapper
     display: flex
     justify-content: center
+    flex-wrap: wrap
 
     .category
       margin: 1em

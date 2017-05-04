@@ -1,5 +1,5 @@
 <template>
-  <div v-if="notEmpty" class="container">
+  <div v-if="notEmpty" class="autocomplete-container">
     <ul v-for="tag in items">
       <tag :name="tag.name" :count="tag.count" />
     </ul>
@@ -28,9 +28,5 @@ export default {
 <style lang="sass" scoped>
 
 
-.container
-  display: block
-  width: 50%
-  transform: translateX(50%)
-  font-size: 1em
+
 </style>

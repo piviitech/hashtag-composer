@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main-container">
     <div class="header">
       <div class="logo">
         <a href="/">
@@ -28,25 +28,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="sass">
-  $font-stack: Helvetica, sans-serif
-  $primary-color: #333
-  $very-light-pink: #fce8ee
-  $pink: #b22d57
-
-  .container
-    text-align: center
-
-  .header
-    height: 8em
-    padding: 1em
-    margin: 1em
-    h1
-      text-align: center
-      color: $pink
-    .logo
-      height: 4em
-      img
-        height: 100%
-</style>

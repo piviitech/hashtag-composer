@@ -1,5 +1,5 @@
 <template>
-  <div class="tagbox">
+  <div class="tag-container">
     <span class="tag" @click="selectTag">#{{name}}</span>
     <span class="count">({{prettyCount}})</span>
     <span class="deletethis" v-if="removable" @click="deleteTag">
@@ -49,32 +49,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass" scoped>
-  $light-pink: rgb(188, 72, 110)
-  $pink: #b22d57
-
-  .tagbox
-    padding: 0.5em
-    background-color: $light-pink
-    border-radius: 1em
-    color: white
-    display: inline-block
-    margin: 0.1em
-    cursor: pointer
-    display: flex
-    align-items: center
-    &:hover
-      background-color: $pink
-
-  .tag
-
-  .count
-
-  .deletethis
-    font-size: 1em
-    display: flex
-    align-items: center
-    justify-content: center
-    margin-left: 0.5em
-</style>
