@@ -21,13 +21,7 @@ const mutations = {
     if (tagText !== '') {
       state.mostRecentTag = tagText
 
-      var found = -1
-      for (var i in state.tagList) {
-        if (state.tagList[i].name === tagText) {
-          found = i
-        }
-      }
-      if (found === -1) {
+      if (!state.tagList.some(function (tag) { return tag.name === tagText })) {
         state.tagList.push({name: tagText, count: -1})
       }
 
@@ -60,27 +54,21 @@ const mutations = {
     // )
   },
   addSuggestedTag (state, { tagText }) { // for clicking around on related Tags
-    var found = -1
-    for (var i in state.tagList) {
-      if (state.tagList[i].name === tagText) {
-        found = i
-      }
-    }
-    if (found === -1) {
-      state.tagList.push({name: tagText, count: -1})
-    }
+    // var found = -1
+    // for (var i in state.tagList) {
+    //   if (state.tagList[i].name === tagText) {
+    //     found = i
+    //   }
+    // }
+    // if (found === -1) {
+    //   state.tagList.push({name: tagText, count: -1})
+    // }
   },
   removeTag (state, { tagText }) {
-    var found = -1
-    for (var i in state.tagList) {
-      if (state.tagList[i].name === tagText) {
-        found = i
-      }
+    if (state.tagList.some(function (tag, i) { return tag.name === tagText })) {
+      state.tagList.splice(state.tagList.findIndex(function (tag) { return tag.name === tagText }), 1)
     }
-    if (found !== -1) {
-      state.tagList.splice(found, 1)
-    }
-    // TODO: update recent?
+    // // TODO: update recent?
   },
   selectTag (state, { tagText }) { // when clicking on tag list (suggestions)
     state.mostRecentTag = tagText

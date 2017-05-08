@@ -35,12 +35,12 @@ export default {
     includible: {
       type: Boolean,
       required: false,
-      default: false
+      default: true
     },
     searchable: {
       type: Boolean,
       required: false,
-      default: false
+      default: true
     }
   },
   data: function () {
