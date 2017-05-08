@@ -1,9 +1,15 @@
 <template>
-  <div class="tag-container">
-    <span class="tag" @click="selectTag">#{{name}}</span>
+  <div class="tag-container" @mouseover="showButtons" @mouseleave="hideButtons">
+    <span class="search" v-if="visibleButtons && searchable">
+      S
+    </span>
+    <span class="tag" @click="selectTag" >#{{name}}</span>
     <span class="count">({{prettyCount}})</span>
-    <span class="deletethis" v-if="removable" @click="deleteTag">
-      <i class="fa fa-times" aria-hidden="true"></i>
+    <span class="deletethis" v-if="visibleButtons && removable" @click="deleteTag">
+      <i class="fa fa-times" aria-hidden="true"></i>X
+    </span>
+    <span class="include" v-if="visibleButtons && includible">
+      +
     </span>
   </div>
 </template>
@@ -25,6 +31,21 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    includible: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    searchable: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  data: function () {
+    return {
+      visibleButtons: false
     }
   },
   computed: {
@@ -45,6 +66,12 @@ export default {
         // tag not yet added. Add dat shit!
         this.$store.commit('commitTag', {tagText: this.name})
       }
+    },
+    showButtons () {
+      this.visibleButtons = true
+    },
+    hideButtons () {
+      this.visibleButtons = false
     }
   }
 }

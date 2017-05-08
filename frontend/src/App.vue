@@ -83,7 +83,7 @@ export default {
       display: flex
       justify-content: center
       flex-wrap: wrap
-      
+
   .copy-container
     margin: 1em
     text-align: center
@@ -103,4 +103,5 @@ export default {
         font-weight: 500
     .copied
       background-color: $pink
+
 </style>
