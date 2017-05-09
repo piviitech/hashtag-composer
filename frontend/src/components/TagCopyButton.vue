@@ -27,7 +27,6 @@ export default {
     },
     copyData: {
       get () {
-        console.log(this.$store.state.tagList[0])
         var res = ''
         for (var i in this.$store.state.tagList) {
           if (i !== 0) {
@@ -44,6 +43,9 @@ export default {
   methods: {
     clicked (event) {
       this.isCopied = true
+      setTimeout(() => {
+        this.isCopied = false
+      }, 3000)
     }
   }
 }

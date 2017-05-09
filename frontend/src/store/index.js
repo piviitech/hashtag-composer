@@ -7,19 +7,22 @@ import get from 'axios'
 Vue.use(Vuex)
 
 const state = {
-  currentTagText: '',
+  inputTag: '',
   autosuggestItems: [],
   tagList: [], // TODO: tag objects?
-  mostRecentTag: '', // TODO: tag object instead of just text?
+  searchedTag: {
+    name: '',
+    count: 0
+  }, // TODO: tag object instead of just text?
   relatedItemCategories: {}
 }
 
 const mutations = {
-  commitTag (state, { tagText }) { // from the input field - free form
-    state.currentTagText = ''
+  addTag (state, { tagText }) { // from the input field - free form
+    state.inputTag = ''
 
     if (tagText !== '') {
-      state.mostRecentTag = tagText
+      state.searchedTag.name = tagText
 
       if (!state.tagList.some(function (tag) { return tag.name === tagText })) {
         state.tagList.push({name: tagText, count: -1})
@@ -34,7 +37,7 @@ const mutations = {
     state.autosuggestItems = []
   },
   updateCurrentTag (state, { newCurrentTag }) {
-    state.currentTagText = newCurrentTag
+    state.inputTag = newCurrentTag
 
     get('/api/v1/search?q=' + newCurrentTag)
       .then(function (response) {
@@ -70,13 +73,12 @@ const mutations = {
     }
     // // TODO: update recent?
   },
-  selectTag (state, { tagText }) { // when clicking on tag list (suggestions)
-    state.mostRecentTag = tagText
-    // TODO
-    // get('/api/v1/related')
-    //   .then(function (response) {
-    //     state.relatedItemCategories = response.data
-    //   })
+  searchTag (state, { tagText }) { // when clicking on tag list (suggestions)
+    state.searchedTag.name = tagText
+    get('/api/v1/related?q=' + tagText)
+      .then(function (response) {
+        state.relatedItemCategories = response.data
+      })
   }
 }
 

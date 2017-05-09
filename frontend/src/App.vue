@@ -67,6 +67,7 @@ export default {
     cursor: pointer
     display: flex
     align-items: center
+    transition: all 0.5s ease
     &:hover
       background-color: $pink
     .tag
@@ -88,6 +89,7 @@ export default {
     margin: 1em
     text-align: center
     button
+      transition: all 0.5s ease
       padding: 0
       border: none
       background: none

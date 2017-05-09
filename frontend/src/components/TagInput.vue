@@ -1,7 +1,7 @@
 <template>
   <div class="input-container">
     <div class="searchbar">
-      <input @keyup.enter="commit" v-model="currentTag" type="text" name="search" placeholder="Search a hashtag">
+      <input @keyup.enter="commit" v-model="inputTag" type="text" name="search" placeholder="Search a hashtag">
     </div>
     <tag-autocomplete></tag-autocomplete>
   </div>
@@ -13,9 +13,9 @@ import TagAutocomplete from './TagAutocomplete'
 export default {
   name: 'tag-input',
   computed: {
-    currentTag: {
+    inputTag: {
       get () {
-        return this.$store.state.currentTagText
+        return this.$store.state.inputTag
       },
       set (newCurrentTag) {
         this.$store.commit('updateCurrentTag', {newCurrentTag})
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     commit (event) {
-      this.$store.commit('commitTag', {tagText: this.currentTag})
+      this.$store.commit('addTag', {tagText: this.inputTag})
     }
   },
   components: {

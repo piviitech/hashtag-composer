@@ -1,8 +1,8 @@
 <template>
   <div class="list-container" v-if="notEmpty">
-    <div class="tags-wrapper" >
-      <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true"/>
-    </div>
+    <draggable :list="tagList" class="tags-wrapper" >
+      <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true" :key="tag.name"/>
+    </draggable>
     <tag-copy-button></tag-copy-button>
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script>
 import Tag from './Tag'
 import TagCopyButton from './TagCopyButton'
+import draggable from 'vuedraggable'
 
 export default {
   name: 'tag-list',
@@ -23,7 +24,8 @@ export default {
   },
   components: {
     'tag-copy-button': TagCopyButton,
-    Tag
+    Tag,
+    draggable
   }
 }
 </script>

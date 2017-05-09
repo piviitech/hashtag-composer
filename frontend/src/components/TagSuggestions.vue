@@ -5,7 +5,7 @@
       <div v-for="category in suggestionCategories" class="category">
         <!-- {{ category.title }} -->
         <ul v-for="tag in category.items">
-          <tag :name="tag.name" :count="tag.count" />
+          <tag :name="tag.name" :count="tag.count" :key="tag.name" />
         </ul>
       </div>
     </div>
@@ -20,7 +20,7 @@ export default {
   name: 'tag-suggestions',
   computed: {
     recentTag () {
-      return this.$store.state.mostRecentTag
+      return this.$store.state.searchedTag.name
     },
     notEmpty () {
       return Object.keys(this.$store.state.relatedItemCategories).length !== 0
