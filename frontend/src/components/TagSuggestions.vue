@@ -4,9 +4,9 @@
     <div class="wrapper">
       <div v-for="category in suggestionCategories" class="category">
         <!-- {{ category.title }} -->
-        <ul v-for="tag in category.items">
+        <draggable :list="category.items" v-for="tag in category.items">
           <tag :name="tag.name" :count="tag.count" :key="tag.name" />
-        </ul>
+        </draggable>
       </div>
     </div>
     <hr>
@@ -15,6 +15,7 @@
 
 <script>
 import Tag from './Tag'
+import draggable from 'vuedraggable'
 
 export default {
   name: 'tag-suggestions',
@@ -45,7 +46,8 @@ export default {
     }
   },
   components: {
-    Tag
+    Tag,
+    draggable
   }
 }
 </script>

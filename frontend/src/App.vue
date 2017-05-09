@@ -106,4 +106,7 @@ export default {
     .copied
       background-color: $pink
 
+  .list-complete-item
+    transition: all 1s
+
 </style>

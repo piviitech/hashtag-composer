@@ -1,5 +1,5 @@
 <template>
-  <div class="tag-container" @mouseover="showButtons" @mouseleave="hideButtons" @click="searchTag">
+  <div class="tag-container list-complete-item" @mouseover="showButtons" @mouseleave="hideButtons" @click="searchTag">
     <span class="search" v-if="visibleButtons && searchable">
       S
     </span>

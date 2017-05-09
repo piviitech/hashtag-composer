@@ -1,7 +1,9 @@
 <template>
   <div class="list-container" v-if="notEmpty">
-    <draggable :list="tagList" class="tags-wrapper" >
-      <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true" :key="tag.name"/>
+    <draggable :list="tagList">
+      <transition-group name="list-complete" class="tags-wrapper">
+        <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true" :key="tag.name"/>
+      </transition-group>
     </draggable>
     <tag-copy-button></tag-copy-button>
   </div>
