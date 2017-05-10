@@ -1,7 +1,7 @@
 <template>
   <div class="list-container" v-if="notEmpty">
     <div class="tags-wrapper" >
-      <tag v-for="tag in tagList" :name="tag.name" :count="tag.count" :removable="true"/>
+      <tag v-for="tag in tagList" :key="tag.name" :name="tag.name" :count="tag.count" :removable="true"/>
     </div>
     <tag-copy-button></tag-copy-button>
   </div>
