@@ -1,23 +1,24 @@
 <template>
-  <div class="tag-container list-complete-item" @mouseover="showButtons" @mouseleave="hideButtons" @click="searchTag">
-    <span class="search" v-if="visibleButtons && searchable">
-      S
-    </span>
-    <span class="tag" >#{{name}}</span>
+  <div :class="" class="tag-container list-complete-item" @mouseover="showButtons" @mouseleave="hideButtons">
+    <span class="tag" @click="addTag">#{{name}}</span>
     <span class="count">({{prettyCount}})</span>
-    <span class="deletethis" v-if="visibleButtons && removable" @click="deleteTag">
-      <i class="fa fa-times" aria-hidden="true"></i>X
-    </span>
-    <span class="include" v-if="visibleButtons && includible">
-      +
+    <span class="side-button" @click="sideAction">
+      <icon name="times" v-if="visibleButtons && removable"></icon>
+      <icon name="search" v-if="visibleButtons && searchable"></icon>
     </span>
   </div>
 </template>
 
 <script>
 
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
+
 export default {
   name: 'tag',
+  components: {
+    Icon
+  },
   props: {
     name: {
       type: String,
@@ -29,11 +30,6 @@ export default {
       required: true
     },
     removable: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    includible: {
       type: Boolean,
       required: false,
       default: false
@@ -55,11 +51,12 @@ export default {
     }
   },
   methods: {
-    deleteTag () {
-      this.$store.commit('removeTag', {tagText: this.name})
-    },
-    searchTag () {
-      this.$store.commit('searchTag', {tagText: this.name})
+    sideAction () {
+      if (this.removable) {
+        this.$store.commit('removeTag', {tagText: this.name})
+      } else if (this.searchable) {
+        this.$store.commit('searchTag', {tagText: this.name})
+      }
     },
     addTag () {
       this.$store.commit('addTag', {tagText: this.name})

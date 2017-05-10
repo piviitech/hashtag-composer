@@ -27,11 +27,6 @@ const mutations = {
       if (!state.tagList.some(function (tag) { return tag.name === tagText })) {
         state.tagList.push({name: tagText, count: -1})
       }
-
-      get('/api/v1/related?q=' + tagText)
-        .then(function (response) {
-          state.relatedItemCategories = response.data
-        })
     }
 
     state.autosuggestItems = []

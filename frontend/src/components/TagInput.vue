@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     commit (event) {
+      this.$store.commit('searchTag', {tagText: this.inputTag})
       this.$store.commit('addTag', {tagText: this.inputTag})
     }
   },

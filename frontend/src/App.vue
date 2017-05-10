@@ -64,6 +64,7 @@ export default {
     color: white
     display: inline-block
     margin: 0.1em
+    padding-left: 2em
     cursor: pointer
     display: flex
     align-items: center
@@ -72,13 +73,15 @@ export default {
       background-color: $pink
     .tag
     .count
-    .deletethis
+      margin-left: 0.5em
+    .side-button
       font-size: 1em
       display: flex
       align-items: center
       justify-content: center
       margin-left: 0.5em
-
+      height: 1em
+      width: 1em
   .list-container
     .tags-wrapper
       display: flex
