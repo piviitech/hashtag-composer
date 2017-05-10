@@ -15,7 +15,7 @@ export default {
   $primary-color: #333
   $very-light-pink: #fce8ee
   $pink: #b22d57
-  $light-pink: rgb(188, 72, 110)
+  $light-pink: rgba(188, 72, 110, 0.8)
   $grey: rgb(173, 185, 172)
 
   #app
@@ -57,6 +57,7 @@ export default {
     transform: translateX(50%)
     font-size: 1em
 
+
   .tag-container
     padding: 0.5em
     background-color: $light-pink
@@ -88,6 +89,9 @@ export default {
       justify-content: center
       flex-wrap: wrap
 
+  .added
+    background-color: $pink
+
   .copy-container
     margin: 1em
     text-align: center
@@ -111,5 +115,8 @@ export default {
 
   .list-complete-item
     transition: all 1s
+
+  .list-complete-enter, .list-complete-leave-active
+    opacity: 0
 
 </style>

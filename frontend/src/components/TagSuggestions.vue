@@ -5,7 +5,7 @@
       <div v-for="category in suggestionCategories" class="category">
         <!-- {{ category.title }} -->
         <draggable :list="category.items" v-for="tag in category.items">
-          <tag :name="tag.name" :count="tag.count" :key="tag.name" :searchable="true" />
+          <tag :name="tag.name" :count="tag.count" :key="tag.name" :isSearchable="true" />
         </draggable>
       </div>
     </div>
