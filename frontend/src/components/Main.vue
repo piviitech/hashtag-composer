@@ -8,7 +8,9 @@
       </div>
       <h1>Hashtag Composer</h1>
     </div>
-    <tag-input></tag-input>
+    <autocomplete>
+    </autocomplete>
+    <!-- <tag-input></tag-input> -->
     <tag-suggestions></tag-suggestions>
     <tag-list></tag-list>
   </div>
@@ -18,13 +20,15 @@
 import TagList from './TagList'
 import TagInput from './TagInput'
 import TagSuggestions from './TagSuggestions'
+import Autocomplete from './autocomplete'
 
 export default {
   name: 'main',
   components: {
     'tag-list': TagList,
     'tag-input': TagInput,
-    'tag-suggestions': TagSuggestions
+    'tag-suggestions': TagSuggestions,
+    'autocomplete': Autocomplete
   }
 }
 </script>

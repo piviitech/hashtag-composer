@@ -1,8 +1,10 @@
 <template>
   <div :class="{ added: isAdded }" class="tag-container list-complete-item" @mouseover="showButtons" @mouseleave="hideButtons">
-    <span class="tag" @click="addTag">#{{ name }}</span>
-    <span class="count">({{ prettyCount }})</span>
-    <span class="side-button" @click="sideAction">
+    <span class="main-button" @click="addOrRemoveTag">
+      <span class="tag">#{{ name }}</span>
+      <span class="count">({{ prettyCount }})</span>
+    </span>
+    <span :class="{ added: isAdded }" class="side-button" @click="sideAction">
       <icon name="times" v-if="visibleButtons && isRemovable"></icon>
       <icon name="search" v-if="visibleButtons && isSearchable"></icon>
     </span>
@@ -61,8 +63,12 @@ export default {
         this.$store.commit('searchTag', {tagText: this.name})
       }
     },
-    addTag () {
-      this.$store.commit('addTag', {tagText: this.name})
+    addOrRemoveTag () {
+      if (this.isAdded) {
+        this.$store.commit('removeTag', {tagText: this.name})
+      } else {
+        this.$store.commit('addTag', {tagText: this.name})
+      }
     },
     showButtons () {
       this.visibleButtons = true

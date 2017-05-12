@@ -1,13 +1,15 @@
 <template>
-  <div v-if="notEmpty" class="autocomplete-container">
-    <ul v-for="tag in items">
-      <tag :name="tag.name" :count="tag.count" />
-    </ul>
+  <div class="center-me">
+    <div v-if="notEmpty" class="autocomplete-container">
+      <div v-for="tag in items">
+        <autocomplete-tag :name="tag.name" :count="tag.count" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Tag from './Tag'
+import AutocompleteTag from './TagAutocompleteTag'
 
 export default {
   name: 'tag-autocomplete',
@@ -20,13 +22,7 @@ export default {
     }
   },
   components: {
-    Tag
+    AutocompleteTag
   }
 }
 </script>
-
-<style lang="sass" scoped>
-
-
-
-</style>

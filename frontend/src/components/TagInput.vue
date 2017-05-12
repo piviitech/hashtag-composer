@@ -1,7 +1,7 @@
 <template>
   <div class="input-container">
     <div class="searchbar">
-      <input @keyup.enter="commit" v-model="inputTag" type="text" name="search" placeholder="Search a hashtag">
+      <input autofocus @keyup.enter="commit" @keyup.arrowdown="alert" v-model="inputTag" type="text" name="search" placeholder="Search a hashtag">
     </div>
     <tag-autocomplete></tag-autocomplete>
   </div>
@@ -26,6 +26,9 @@ export default {
     commit (event) {
       this.$store.commit('searchTag', {tagText: this.inputTag})
       this.$store.commit('addTag', {tagText: this.inputTag})
+    },
+    alert () {
+      alert('whaat')
     }
   },
   components: {

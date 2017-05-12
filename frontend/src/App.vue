@@ -15,7 +15,8 @@ export default {
   $primary-color: #333
   $very-light-pink: #fce8ee
   $pink: #b22d57
-  $light-pink: rgba(188, 72, 110, 0.8)
+  $light-pink: #c86a89
+  $medium-pink: #bc486e
   $grey: rgb(173, 185, 172)
 
   #app
@@ -37,6 +38,7 @@ export default {
           height: 100%
 
   .input-container
+    margin-top: 4em
     .searchbar
       text-align: center
       display: flex
@@ -51,46 +53,79 @@ export default {
       border-bottom: 1px solid grey
       font-family: 'Raleway', sans-serif
 
+  .center-me
+    display: flex
+    justify-content: center
+    width: 100vw
+
   .autocomplete-container
+    position: absolute
     display: block
-    width: 50%
-    transform: translateX(50%)
+    width: 30%
     font-size: 1em
+    border: 1px solid $grey
+    background-color: white
+    border-radius: 0em 0em 1em 1em
+    left: auto
 
-
-  .tag-container
-    padding: 0.5em
-    background-color: $light-pink
-    border-radius: 1em
-    color: white
+  .autocomplete-tag-container
+    color: $grey
     display: inline-block
-    margin: 0.1em
-    padding-left: 2em
     cursor: pointer
     display: flex
     align-items: center
     transition: all 0.5s ease
     &:hover
-      background-color: $pink
-    .tag
-    .count
-      margin-left: 0.5em
+      color: $medium-pink
+    .autocomplete-main-button
+      padding: 0.5em 0em 0.5em 2em
+      .autocomplete-tag
+      .autocomplete-count
+        margin-left: 0.5em
+
+  .tag-container
+    background-color: $light-pink
+    border-radius: 1em
+    color: white
+    display: inline-block
+    margin: 0.1em
+    cursor: pointer
+    display: flex
+    align-items: center
+    transition: all 0.5s ease
+    &:hover
+      background-color: $medium-pink
+    .main-button
+      padding: 0.5em 0em 0.5em 2em
+      .tag
+      .count
+        margin-left: 0.5em
     .side-button
+      transition: all 0.5s ease
+      border-radius: 1em
       font-size: 1em
       display: flex
       align-items: center
       justify-content: center
       margin-left: 0.5em
-      height: 1em
-      width: 1em
+      margin-right: 0.5em
+      height: 1.5em
+      width: 1.5em
+      background-color: $light-pink
+      &:hover
+        background-color: $medium-pink
+
+
+
   .list-container
+    margin: 0 5em 0 5em
     .tags-wrapper
       display: flex
       justify-content: center
       flex-wrap: wrap
 
   .added
-    background-color: $pink
+    background-color: $pink !important
 
   .copy-container
     margin: 1em
@@ -114,9 +149,20 @@ export default {
       background-color: $pink
 
   .list-complete-item
-    transition: all 1s
+    transition: all 0.5s
 
   .list-complete-enter, .list-complete-leave-active
     opacity: 0
+
+  .autocomplete-suggestion
+    color: $grey
+    cursor: pointer
+    transition: all 0.5s ease
+    padding: 0.5em 0em 0.5em 2em
+    &:hover
+      color: $medium-pink
+
+  .active
+    color: $medium-pink
 
 </style>

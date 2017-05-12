@@ -19,11 +19,10 @@ const state = {
 
 const mutations = {
   addTag (state, { tagText }) { // from the input field - free form
+    console.log('Searching tag...')
     state.inputTag = ''
 
     if (tagText !== '') {
-      state.searchedTag.name = tagText
-
       if (!state.tagList.some(function (tag) { return tag.name === tagText })) {
         state.tagList.push({name: tagText, count: -1})
       }
@@ -32,12 +31,15 @@ const mutations = {
     state.autosuggestItems = []
   },
   updateCurrentTag (state, { newCurrentTag }) {
+    console.log('Updating current tag...')
     state.inputTag = newCurrentTag
 
-    get('/api/v1/search?q=' + newCurrentTag)
-      .then(function (response) {
-        state.autosuggestItems = response.data.tags
-      })
+    if (newCurrentTag !== '') {
+      get('/api/v1/search?q=' + newCurrentTag)
+        .then(function (response) {
+          state.autosuggestItems = response.data.tags
+        })
+    }
     // see end of https://vuex.vuejs.org/en/actions.html
     //
     // debounce(
