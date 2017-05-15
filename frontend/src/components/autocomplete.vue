@@ -1,14 +1,21 @@
 <template lang="html">
-  <div style="position:relative" :class="{'open':openSuggestion}" class="input-container">
+  <div style="position:relative" :class="{'open': openSuggestion}" class="input-container">
     <div class="searchbar">
-      <input autofocus class="form-control" type="text" v-model="selection" placeholder="Search a hashtag"
+      <input autofocus
+        class="form-control"
+        type="text"
+        placeholder="Search a hashtag"
+        v-model="selection"
+        v-focus="focused"
+        @focus="focused = true"
+        @blur="focused = false"
         @keydown.enter = 'enter'
         @keydown.down = 'down'
         @keydown.up = 'up'
         @input = 'change'
       />
     </div>
-    <div v-if="notEmpty" class="center-me">
+    <div v-if="openSuggestion" class="center-me">
       <div class="dropdown-menu autocomplete-container">
           <div v-for="(suggestion, index) in matches"
             v-bind:class="{'active': isActive(index)}"
@@ -24,10 +31,14 @@
 </template>
 
 <script>
+import { mixin as focusMixin } from 'vue-focus'
+
 export default {
   name: 'autocomplete',
+  mixins: [ focusMixin ],
   data: function () {
     return {
+      focused: false,
       open: true,
       current: 0,
       value: ''
@@ -46,7 +57,8 @@ export default {
       console.log(this.selection)
       console.log(this.matches.length)
       console.log(this.open)
-      return this.selection !== ' ' && this.matches.length !== 0 && this.open === true
+      console.log(this.focused)
+      return this.selection !== '' && this.matches.length !== 0 && this.open === true && this.focused === true
     },
     selection: {
       get () {
@@ -97,8 +109,9 @@ export default {
       this.open = false
     },
     commit () {
-      this.$store.commit('searchTag', {tagText: this.name})
-      this.$store.commit('addTag', {tagText: this.name})
+      console.log(this)
+      this.$store.commit('searchTag', {tagText: this})
+      this.$store.commit('addTag', {tagText: this})
       this.open = false
     }
   }

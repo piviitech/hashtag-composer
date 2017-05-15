@@ -80,8 +80,8 @@ export default {
     .autocomplete-main-button
       padding: 0.5em 0em 0.5em 2em
       .autocomplete-tag
-      .autocomplete-count
         margin-left: 0.5em
+      .autocomplete-count
 
   .tag-container
     background-color: $light-pink

@@ -39,6 +39,8 @@ const mutations = {
         .then(function (response) {
           state.autosuggestItems = response.data.tags
         })
+    } else {
+      state.autosuggestItems = []
     }
     // see end of https://vuex.vuejs.org/en/actions.html
     //
@@ -76,6 +78,7 @@ const mutations = {
       .then(function (response) {
         state.relatedItemCategories = response.data
       })
+    state.autosuggestItems = []
   }
 }
 
