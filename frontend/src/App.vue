@@ -65,8 +65,11 @@ export default {
     font-size: 1em
     border: 1px solid $grey
     background-color: white
-    border-radius: 0em 0em 1em 1em
     left: auto
+
+  .autocomplete-match
+    &:hover
+      color: $pink
 
   .autocomplete-tag-container
     color: $grey

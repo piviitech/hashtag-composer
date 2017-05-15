@@ -19,7 +19,6 @@ const state = {
 
 const mutations = {
   addTag (state, { tagText }) { // from the input field - free form
-    console.log('Searching tag...')
     state.inputTag = ''
 
     if (tagText !== '') {
@@ -31,17 +30,8 @@ const mutations = {
     state.autosuggestItems = []
   },
   updateCurrentTag (state, { newCurrentTag }) {
-    console.log('Updating current tag...')
     state.inputTag = newCurrentTag
 
-    if (newCurrentTag !== '') {
-      get('/api/v1/search?q=' + newCurrentTag)
-        .then(function (response) {
-          state.autosuggestItems = response.data.tags
-        })
-    } else {
-      state.autosuggestItems = []
-    }
     // see end of https://vuex.vuejs.org/en/actions.html
     //
     // debounce(
@@ -54,6 +44,16 @@ const mutations = {
     //   },
     //   500
     // )
+  },
+  updateAutosuggestItems (state, { newCurrentTag }) {
+    if (newCurrentTag !== '') {
+      get('/api/v1/search?q=' + newCurrentTag)
+        .then(function (response) {
+          state.autosuggestItems = response.data.tags
+        })
+    } else {
+      state.autosuggestItems = []
+    }
   },
   addSuggestedTag (state, { tagText }) { // for clicking around on related Tags
     // var found = -1

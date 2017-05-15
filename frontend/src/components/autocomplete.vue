@@ -15,16 +15,18 @@
         @input = 'change'
       />
     </div>
+
     <div v-if="openSuggestion" class="center-me">
-      <div class="dropdown-menu autocomplete-container">
-          <div v-for="(suggestion, index) in matches"
-            v-bind:class="{'active': isActive(index)}"
-            @click="suggestionClick(index)"
-            >
-            <span class="autocomplete-main-button" @click="commit">
-              <span class="autocomplete-tag">{{ suggestion }}</span>
-            </span>
+      <div class="dropdown-menu autocomplete-container" >
+        <div v-for="(suggestion, index) in matches"
+          class="autocomplete-match"
+          :class="{'active': isActive(index)}"
+          @click="suggestionClick(index)"
+          >
+          <div class="autocomplete-main-button">
+            <div class="autocomplete-tag">{{ suggestion }}</div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -39,8 +41,8 @@ export default {
   data: function () {
     return {
       focused: false,
-      open: true,
-      current: 0,
+      open: false,
+      current: -1,
       value: ''
     }
   },
@@ -54,11 +56,7 @@ export default {
       })
     },
     openSuggestion () {
-      console.log(this.selection)
-      console.log(this.matches.length)
-      console.log(this.open)
-      console.log(this.focused)
-      return this.selection !== '' && this.matches.length !== 0 && this.open === true && this.focused === true
+      return this.selection !== '' && this.matches.length !== 0 && this.open === true
     },
     selection: {
       get () {
@@ -66,6 +64,7 @@ export default {
       },
       set (newCurrentTag) {
         this.$store.commit('updateCurrentTag', {newCurrentTag})
+        this.$store.commit('updateAutosuggestItems', {newCurrentTag})
       }
     },
     suggestions () {
@@ -77,13 +76,21 @@ export default {
   },
   methods: {
     enter () {
-      this.selection = this.matches[this.current]
-      this.$store.commit('searchTag', {tagText: this.selection})
-      this.$store.commit('addTag', {tagText: this.selection})
-      this.open = false
+      if (this.matches[this.current]) {
+        this.selection = this.matches[this.current]
+        this.$store.commit('searchTag', {tagText: this.selection})
+        this.$store.commit('addTag', {tagText: this.selection})
+        this.current = -1
+        this.open = false
+      } else {
+        this.$store.commit('searchTag', {tagText: this.selection})
+        this.$store.commit('addTag', {tagText: this.selection})
+        this.current = -1
+        this.open = false
+      }
     },
     up () {
-      if (this.current > 0) {
+      if (this.current > -1) {
         this.current--
       }
     },
@@ -98,20 +105,20 @@ export default {
     change () {
       if (this.open === false) {
         this.open = true
-        this.current = 0
+        this.current = -1
       }
       if (this.selection === '') {
         this.open = false
       }
     },
-    suggestionClick (index) {
-      this.selection = this.matches[index]
-      this.open = false
+    sayHey () {
+      console.log('hey')
     },
-    commit () {
-      console.log(this)
-      this.$store.commit('searchTag', {tagText: this})
-      this.$store.commit('addTag', {tagText: this})
+    suggestionClick (index) {
+      console.log()
+      this.$store.commit('searchTag', {tagText: this.matches[index]})
+      this.$store.commit('addTag', {tagText: this.matches[index]})
+      this.current = -1
       this.open = false
     }
   }
