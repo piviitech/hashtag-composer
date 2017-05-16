@@ -18,7 +18,6 @@
 
 <script>
 import TagList from './TagList'
-import TagInput from './TagInput'
 import TagSuggestions from './TagSuggestions'
 import Autocomplete from './autocomplete'
 
@@ -26,7 +25,6 @@ export default {
   name: 'main',
   components: {
     'tag-list': TagList,
-    'tag-input': TagInput,
     'tag-suggestions': TagSuggestions,
     'autocomplete': Autocomplete
   }

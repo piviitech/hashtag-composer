@@ -80,11 +80,11 @@ export default {
     transition: all 0.5s ease
     &:hover
       color: $medium-pink
-    .autocomplete-main-button
-      padding: 0.5em 0em 0.5em 2em
-      .autocomplete-tag
-        margin-left: 0.5em
-      .autocomplete-count
+
+  .autocomplete-main-button
+    padding: 0.5em 0em 0.5em 1em
+    .autocomplete-tag
+    .autocomplete-count
 
   .tag-container
     background-color: $light-pink

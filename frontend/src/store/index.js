@@ -23,7 +23,12 @@ const mutations = {
 
     if (tagText !== '') {
       if (!state.tagList.some(function (tag) { return tag.name === tagText })) {
-        state.tagList.push({name: tagText, count: -1})
+        state.tagList.push(
+          {
+            name: tagText,
+            count: -1
+          }
+        )
       }
     }
 

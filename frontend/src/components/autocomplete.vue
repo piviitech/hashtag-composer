@@ -111,13 +111,10 @@ export default {
         this.open = false
       }
     },
-    sayHey () {
-      console.log('hey')
-    },
     suggestionClick (index) {
-      console.log()
-      this.$store.commit('searchTag', {tagText: this.matches[index]})
-      this.$store.commit('addTag', {tagText: this.matches[index]})
+      var clickedTag = this.matches[index]
+      this.$store.commit('addTag', {tagText: clickedTag})
+      this.$store.commit('searchTag', {tagText: clickedTag})
       this.current = -1
       this.open = false
     }

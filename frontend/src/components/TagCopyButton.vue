@@ -17,6 +17,7 @@ export default {
       if (this.isCopied) {
         return `Copied!`
       } else if (this.$store.state.tagList.length === 1) {
+        console.log(this.$store.state.tagList)
         return `Copy ${this.$store.state.tagList.length} tag!`
       } else {
         return `Copy ${this.$store.state.tagList.length} tags!`
